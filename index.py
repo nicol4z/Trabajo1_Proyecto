@@ -4,6 +4,7 @@ from tkinter import *
 
 class Test:
     def __init__(self, ventana):
+        print("Test")
         self.ventana = ventana
         self.ventana.title("test title");
 

@@ -18,9 +18,11 @@ class app:
    def mostrarTrabajadores(self, cuaderno):
       pagina = ttk.Frame(cuaderno)
       cuaderno.add(pagina, text = "Contrataciones")
-      labelFrame = LabelFrame(pagina, text = "trabajadores", padx = 100, pady = 100)
+      labelFrame = LabelFrame(pagina, text = "trabajadores", padx = 0, pady = 10)
       
       labelFrame.grid(column=0, row=0, padx=200, pady=100)
+
+      buttonCargarContratos = ttk.Button(pagina, text = "cargar contratos", command= lambda: self.CargarContratos()).grid()
       
       #label= ttk.Label(labelFrame, text = "descripcion")
       #barra = Entry(labelFrame, text = "buscas algo").pack()
@@ -29,12 +31,12 @@ class app:
    def mostrarContratos(self, cuaderno):
       pagina = ttk.Frame(cuaderno)
       cuaderno.add(pagina, text = "mostrar contratos")
-      labelFrame = ttk.LabelFrame(pagina, text = "trabajadores")
-      labelFrame.grid()
+      #labelFrame = ttk.LabelFrame(pagina, text = "trabajadores")
+      #labelFrame.grid()
+      
 
-   def CargarContratos(self, cuaderno):
-      contratacionese = contrataciones()
-      contrataciones.cargarContrataciones()
+   def CargarContratos(self):
+      contrataciones.contrataciones.cargarContrataciones()
       
 
 application = app()

@@ -5,7 +5,8 @@ from tkinter import filedialog
 from typing import List, Tuple 
   
 class contrataciones:
-    def cargarContrataciones(self):
+
+    def cargarContrataciones():
         filename = filedialog.askopenfilename(initialdir = "/", title = "Select a File", 
         filetypes = (("Text files","*.csv*"),("all files","*.*"))) 
 
@@ -15,11 +16,11 @@ class contrataciones:
 
         with open(filename) as data:
          reader = csv.DictReader(data, delimiter=";", skipinitialspace = True)
-        for n, r in enumerate(reader):
-         t = tuple(r.values())
-         cursor.execute("INSERT INTO Contrataciones(RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) "+
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", t)
-         conexion.commit()
+         for n, r in enumerate(reader):
+          t = tuple(r.values())
+          cursor.execute("INSERT INTO Contrataciones(RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) "+
+          "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", t)
+          conexion.commit()
 
 
 

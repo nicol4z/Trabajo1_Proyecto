@@ -1,6 +1,7 @@
 from email.mime import application
 from tkinter import *
 from tkinter import ttk
+import contrataciones
 
 class app:
    def __init__(self):
@@ -9,17 +10,31 @@ class app:
       ventana.geometry("450x450")
       cuaderno = ttk.Notebook(ventana)
       cuaderno.pack(fill = "both", expand = "yes")
-      cuaderno.grid(column=0, row = 0, padx = 10, pady = 10)
+      cuaderno.grid(column=0, row = 0, padx = 10 , pady = 10)
       self.mostrarTrabajadores(cuaderno)
       self.mostrarContratos(cuaderno)
       ventana.mainloop()
    
    def mostrarTrabajadores(self, cuaderno):
       pagina = ttk.Frame(cuaderno)
-      cuaderno.add(pagina, text = "mostrar trabajadores")
+      cuaderno.add(pagina, text = "Contrataciones")
+      labelFrame = LabelFrame(pagina, text = "trabajadores", padx = 100, pady = 100)
+      
+      labelFrame.grid(column=0, row=0, padx=200, pady=100)
+      
+      #label= ttk.Label(labelFrame, text = "descripcion")
+      #barra = Entry(labelFrame, text = "buscas algo").pack()
+      #boton = Button(cuaderno, text = "buscar").pack()   
    
    def mostrarContratos(self, cuaderno):
       pagina = ttk.Frame(cuaderno)
       cuaderno.add(pagina, text = "mostrar contratos")
+      labelFrame = ttk.LabelFrame(pagina, text = "trabajadores")
+      labelFrame.grid()
+
+   def CargarContratos(self, cuaderno):
+      contratacionese = contrataciones()
+      contrataciones.cargarContrataciones()
+      
 
 application = app()

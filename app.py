@@ -2,6 +2,7 @@ from email.mime import application
 from tkinter import *
 from tkinter import ttk
 import contrataciones
+import desvinculaciones
 
 class app:
    def __init__(self):
@@ -21,7 +22,7 @@ class app:
       labelFrame = LabelFrame(pagina, text = "trabajadores", padx = 0, pady = 10)
       
       labelFrame.grid(column=0, row=0, padx=200, pady=100)
-      buttonCargarContratos = ttk.Button(pagina, text = "cargar contratos", command= lambda: self.CargarContratos())
+      buttonCargarContratos = ttk.Button(pagina, text = "Cargar contratos", command= lambda: self.CargarContratos())
 
       buttonCargarContratos.grid(column=0, row = 0, padx = 0 , pady = 20)
       buttonCargarContratos.place(x = 10 , y = 10 )
@@ -29,11 +30,18 @@ class app:
    
    def mostrarContratos(self, cuaderno):
       pagina = ttk.Frame(cuaderno)
-      cuaderno.add(pagina, text = "mostrar contratos")
+      cuaderno.add(pagina, text = "Desvinculaciones")
+      btnCargarDesv = ttk.Button(pagina, text = "Cargar Desvinculaciones", command = lambda:self.CargarDesvinculaciones())
+      btnCargarDesv.grid(column = 0, row = 0, padx = 0 , pady = 20)
+      btnCargarDesv.place(x = 10 , y = 10)
       
 
    def CargarContratos(self):
       contrataciones.contrataciones.cargarContrataciones()
+   
+   def CargarDesvinculaciones(self):
+      desvinculaciones.Desvinculaciones.cargarDesvinculaciones()
+
       
 
 application = app()

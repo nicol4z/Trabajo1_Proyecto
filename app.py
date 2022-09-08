@@ -7,7 +7,7 @@ class app:
    def __init__(self):
       ventana = Tk()
       ventana.title("Sistema de recursos humanos")
-      ventana.geometry("450x450")
+      ventana.geometry("450x250")
       cuaderno = ttk.Notebook(ventana)
       cuaderno.pack(fill = "both", expand = "yes")
       cuaderno.grid(column=0, row = 0, padx = 10 , pady = 10)
@@ -21,8 +21,10 @@ class app:
       labelFrame = LabelFrame(pagina, text = "trabajadores", padx = 0, pady = 10)
       
       labelFrame.grid(column=0, row=0, padx=200, pady=100)
+      buttonCargarContratos = ttk.Button(pagina, text = "cargar contratos", command= lambda: self.CargarContratos())
 
-      buttonCargarContratos = ttk.Button(pagina, text = "cargar contratos", command= lambda: self.CargarContratos()).grid()
+      buttonCargarContratos.grid(column=0, row = 0, padx = 0 , pady = 20)
+      buttonCargarContratos.place(x = 10 , y = 10 )
       
       #label= ttk.Label(labelFrame, text = "descripcion")
       #barra = Entry(labelFrame, text = "buscas algo").pack()

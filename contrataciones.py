@@ -1,3 +1,4 @@
+from calendar import c
 from tkinter import *
 import csv
 import sqlite3
@@ -10,8 +11,9 @@ class contrataciones:
         filename = filedialog.askopenfilename(initialdir = "/", title = "Select a File", 
         filetypes = (("Text files","*.csv*"),("all files","*.*"))) 
 
-        archivo = csv.DictReader(filename, delimiter = ";", skipinitialspace = True)
+        #archivo = csv.DictReader(filename, delimiter = ";", skipinitialspace = True)
         conexion = sqlite3.connect("db1.db")
+
         cursor = conexion.cursor()
 
         with open(filename) as data:
@@ -21,6 +23,8 @@ class contrataciones:
           cursor.execute("INSERT INTO Contrataciones(RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) "+
           "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", t)
           conexion.commit()
+        
+        conexion.close()
 
 
 

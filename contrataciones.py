@@ -19,10 +19,10 @@ class contrataciones:
         with open(filename) as data:
          reader = csv.DictReader(data, delimiter=";", skipinitialspace = True)
          for n, r in enumerate(reader):
-          t = tuple(r.values())
-          cursor.execute("INSERT INTO Contrataciones(RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) "+
-          "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", t)
-          conexion.commit()
+           t = tuple(r.values())
+           cursor.execute("INSERT INTO Contrataciones(RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) "+
+           "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", t)
+           conexion.commit()
         
         conexion.close()
 

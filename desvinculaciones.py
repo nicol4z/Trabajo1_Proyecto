@@ -16,7 +16,8 @@ with open(filename) as data:
     reader = csv.DictReader(data, delimiter=";", skipinitialspace = True)
     for n, r in enumerate(reader):
         t = tuple(r.values())
-        cursor.execute("INSERT INTO Desvinculaciones(NUMERO_CONTRATO, RUT, DV, NOMBRES, APELLIDO, FECHA_DESVINCULACION, CAUSAL) "+
-        "VALUES (?, ?, ?, ?, ?, ?, ?)", t)
+        cursor.execute("INSERT INTO Desvinculaciones(RUT, DV, NOMBRES, APELLIDO_PATERNO, APELLIDO_MATERNO, NUMERO_CONTRATO, FECHA_DESVINCULACION, CAUSAL) "+
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?);", t)
+        conexion.commit()
         
 conexion.close()

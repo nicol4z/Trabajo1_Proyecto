@@ -25,16 +25,11 @@ class app:
 
       buttonCargarContratos.grid(column=0, row = 0, padx = 0 , pady = 20)
       buttonCargarContratos.place(x = 10 , y = 10 )
-      
-      #label= ttk.Label(labelFrame, text = "descripcion")
-      #barra = Entry(labelFrame, text = "buscas algo").pack()
-      #boton = Button(cuaderno, text = "buscar").pack()   
+        
    
    def mostrarContratos(self, cuaderno):
       pagina = ttk.Frame(cuaderno)
       cuaderno.add(pagina, text = "mostrar contratos")
-      #labelFrame = ttk.LabelFrame(pagina, text = "trabajadores")
-      #labelFrame.grid()
       
 
    def CargarContratos(self):

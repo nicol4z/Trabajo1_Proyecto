@@ -1,20 +1,20 @@
-import sqlite3
+from multiprocessing.sharedctypes import Value
+from typing import Tuple
+import csv
+from tkinter import filedialog
+import math
 
-#try:
- #   conexion = sqlite3.connect("db1.db")
 
-  #  cursor = conexion.execute("select rutt from contrataciones")
+filename = filedialog.askopenfilename(initialdir = "/", title = "Seleccionar archivo", 
+filetypes = (("Text files","*.csv*"),("all files","*.*")))
+with open(filename) as data:
+    strPrueba = 23123
+    reader = csv.DictReader(data, delimiter=";", skipinitialspace = True)
+    for n, r in enumerate(reader):
+        
+        t = tuple(r.values())
+      #  t =  strPrueba + r.values()
+        print(t[0])
 
-   # print("conexion exitosa")
-    #for fila in cursor:
-     #   print(fila)
-    
 
-#except sqlite3.OperationalError:
- #   print("No se pudo conectar a la base de datos")
-conexion = sqlite3.connect("db1.db")
-cursor = conexion.execute("select rutt from contrataciones")
 
-print("conexion exitosa")
-for fila in cursor:
-    print(fila)

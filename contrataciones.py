@@ -5,6 +5,7 @@ import sqlite3
 from tkinter import filedialog
 from typing import List, Tuple 
 from tkinter import messagebox as mb
+import app
   
 class contrataciones:
 
@@ -21,9 +22,8 @@ class contrataciones:
            reader = csv.DictReader(data, delimiter=";", skipinitialspace = True)
            for n, r in enumerate(reader):
              t = tuple(r.values())
-             
-             cursor.execute("INSERT INTO Contrataciones(RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) "+
-             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", t)
+             cursor.execute("INSERT INTO Contrataciones (RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) VALUES "+
+             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", t)
              conexion.commit()
              
            mb.showinfo("Contrataciones", "las contrataciones fueron cargadas exitosamente")

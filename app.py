@@ -12,11 +12,11 @@ class app:
       cuaderno = ttk.Notebook(ventana)
       cuaderno.pack(fill = "both", expand = "yes")
       cuaderno.grid(column=0, row = 0, padx = 10 , pady = 10)
-      self.mostrarTrabajadores(cuaderno)
       self.mostrarContratos(cuaderno)
+      self.mostrarDesvinculaciones(cuaderno)
       ventana.mainloop()
    
-   def mostrarTrabajadores(self, cuaderno):
+   def mostrarContratos(self, cuaderno):#antes se llamava mostrarTrabajadores
       pagina = ttk.Frame(cuaderno)
       cuaderno.add(pagina, text = "Contrataciones")
       labelFrame = LabelFrame(pagina, text = "trabajadores", padx = 0, pady = 10)
@@ -28,7 +28,7 @@ class app:
       buttonCargarContratos.place(x = 10 , y = 10 )
         
    
-   def mostrarContratos(self, cuaderno):
+   def mostrarDesvinculaciones(self, cuaderno):#antes se llamaba mostrarContratos
       pagina = ttk.Frame(cuaderno)
       cuaderno.add(pagina, text = "Desvinculaciones")
       btnCargarDesv = ttk.Button(pagina, text = "Cargar Desvinculaciones", command = lambda:self.CargarDesvinculaciones())

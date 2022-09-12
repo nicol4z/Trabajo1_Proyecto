@@ -2,18 +2,24 @@ from calendar import c
 from tkinter import *
 import csv
 import sqlite3
+import trabajador
 from tkinter import filedialog
 from typing import List, Tuple 
 from tkinter import messagebox as mb
+from datetime import datetime
+
+from dateutil.relativedelta import relativedelta
+
 import app
   
 class contrataciones:
-
-    def cargarContrataciones():
+  def cargarContrataciones():
       try:
-
           filename = filedialog.askopenfilename(initialdir = "/", title = "Select a File", 
           filetypes = (("Text files","*.csv*"),("all files","*.*"))) 
+          i = 0
+          if filename == '':
+            return
 
           conexion = sqlite3.connect("db1.db")
           cursor = conexion.cursor()
@@ -22,12 +28,21 @@ class contrataciones:
            reader = csv.DictReader(data, delimiter=";", skipinitialspace = True)
            for n, r in enumerate(reader):
              t = tuple(r.values())
-             cursor.execute("INSERT INTO Contrataciones (RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) VALUES "+
-             "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", t)
-             conexion.commit()
+             rutTrabajador = t[0]
+             verificar = verificarTrabajador(rutTrabajador, conexion)
+             if verificar == False:
+                #print("insertar en trabajador")
+                trabajador.Trabajador.insertarTrabajador(t[0], t[1], t[2], t[3], t[4], t[7])
              
-           mb.showinfo("Contrataciones", "las contrataciones fueron cargadas exitosamente")
-        
+             else:
+                #print("no insertar en trabajador")
+                cursor.execute("INSERT INTO Contrataciones (RUT, DV, NOMBRES, APELLIDO_MATERNO, APELLIDO_PATERNO, JORNADA, PROYECTO, CARGO, INICIO_CONTRATO, TIPO_CONTRATO, DURACION, SUELDO) VALUES "+
+                "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", t)
+            
+             
+             conexion.commit()
+
+          mb.showinfo("Contrataciones", "Las contrataciones fueron cargadas exitosamente") 
           conexion.close()
         
       except sqlite3.IntegrityError as e:
@@ -36,8 +51,14 @@ class contrataciones:
       except sqlite3.ProgrammingError as e:
           mb.showerror("Contrataciones", "Los datos que intenta ingresar no son validos")
 
-
-
+def verificarTrabajador(rutTrabajador, conexion):
+     trabajador = conexion.cursor()
+     fila = trabajador.execute("SELECT RUT FROM trabajadores WHERE rut = ?", (rutTrabajador,))
+     if trabajador.fetchone() == None:
+        return False
+     else:
+        return True
+     
 
 
 

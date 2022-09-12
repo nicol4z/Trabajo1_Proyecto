@@ -13,6 +13,8 @@ with open(filename) as data:
     for n, r in enumerate(reader):
         
         t = tuple(r.values())
+        print(t[8])
+        
       #  t =  strPrueba + r.values()
         print(t[0])
 

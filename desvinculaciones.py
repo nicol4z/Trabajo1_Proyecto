@@ -53,9 +53,8 @@ def verificarDesvinculaciones(numeroContrato, conexion):
 def exportarDesvinculaciones():
     conexion = sqlite3.connect("db1.db")
     cursor = conexion.cursor()
-
-    desvinculaciones = cursor.execute("select * from Desvinculaciones")
-    if desvinculaciones.fetchone() == None:
+    desvinculaciones = cursor.execute("SELECT * FROM Desvinculaciones")
+    if desvinculaciones.rowcount == 0:
         mb.showerror("Desvinculaciones", "No existen Desvinculaciones en el sistema")
         return
     

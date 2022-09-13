@@ -68,12 +68,12 @@ def exportarContrataciones():
 
    conexion = sqlite3.connect("db1.db")
    cursor = conexion.cursor()
-
    contrataciones = cursor.execute("select * from contrataciones")
-   if contrataciones.fetchone() == None:
+   
+   if contrataciones.rowcount == 0 :
       mb.showerror("Contrataciones", "No existen contrataciones en el sistema")
       return
-
+   
    workbook = Workbook("contrataciones.xlsx")
    worksheet = workbook.add_worksheet()
    for i, row in enumerate(contrataciones):

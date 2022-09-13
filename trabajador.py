@@ -3,6 +3,7 @@ import sqlite3
 from datetime import date
 from random import randint
 
+
 class Trabajador:
     
     def insertarTrabajador(rut, DV, nombre, apellidoPaterno, apellidoMaterno, titulo):

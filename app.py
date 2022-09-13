@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 import contrataciones
 import desvinculaciones
+from trabajador import Trabajador
 
 class app:
    def __init__(self):
@@ -16,16 +17,22 @@ class app:
       self.mostrarDesvinculaciones(cuaderno)
       ventana.mainloop()
    
-   def mostrarContratos(self, cuaderno):#antes se llamava mostrarTrabajadores
+   def mostrarContratos(self, cuaderno):
       pagina = ttk.Frame(cuaderno)
       cuaderno.add(pagina, text = "Contrataciones")
-      labelFrame = LabelFrame(pagina, text = "trabajadores", padx = 0, pady = 10)
+      labelFrame = LabelFrame(pagina, text = "trabajadores", padx = 0, pady = 0)
       
       labelFrame.grid(column=0, row=0, padx=200, pady=100)
       buttonCargarContratos = ttk.Button(pagina, text = "Cargar contratos", command= lambda: self.CargarContratos())
+      #buttonMostrarTrabajadores = ttk.Button(pagina, text = "MostrarContratos")
+      btnExportarTrabajadores = ttk.Button(pagina, text = "Exportar contratos", command= lambda: self.exportarContrataciones())
 
-      buttonCargarContratos.grid(column=0, row = 0, padx = 0 , pady = 20)
+      buttonCargarContratos.grid(column=0, row = 0, padx = 300 , pady = 100)
       buttonCargarContratos.place(x = 10 , y = 10 )
+
+      btnExportarTrabajadores.grid(column = 0, row = 0, padx = 200, pady = 100)
+      btnExportarTrabajadores.place(x = 10 , y = 60)
+      
         
    
    def mostrarDesvinculaciones(self, cuaderno):#antes se llamaba mostrarContratos
@@ -34,6 +41,13 @@ class app:
       btnCargarDesv = ttk.Button(pagina, text = "Cargar Desvinculaciones", command = lambda:self.CargarDesvinculaciones())
       btnCargarDesv.grid(column = 0, row = 0, padx = 0 , pady = 20)
       btnCargarDesv.place(x = 10 , y = 10)
+
+      btnExportarDesvinculaciones = ttk.Button(pagina, text = "Exportar Desvinculaciones", command = lambda:self.exportarDesvinculaciones())
+      btnExportarDesvinculaciones.grid(column= 0, row = 0, padx = 0 , pady = 20)
+      btnExportarDesvinculaciones.place(x = 10 , y = 60)
+   
+   def modificarTrabajador():
+      ventana = ttk()
       
 
    def CargarContratos(self):
@@ -41,6 +55,12 @@ class app:
    
    def CargarDesvinculaciones(self):
       desvinculaciones.Desvinculaciones.cargarDesvinculaciones()
+
+   def exportarContrataciones(self):
+      contrataciones.exportarContrataciones()
+
+   def exportarDesvinculaciones(self):
+      desvinculaciones.exportarDesvinculaciones()
 
       
 

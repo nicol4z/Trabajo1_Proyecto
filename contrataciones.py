@@ -3,14 +3,16 @@ from tkinter import *
 import csv
 import sqlite3
 import trabajador
+import pandas
 from tkinter import filedialog
 from typing import List, Tuple 
 from tkinter import messagebox as mb
 from datetime import datetime
+from xlsxwriter.workbook import Workbook
 
 from dateutil.relativedelta import relativedelta
 
-import app
+
   
 class contrataciones:
   def cargarContrataciones():
@@ -60,5 +62,22 @@ def verificarTrabajador(rutTrabajador, conexion):
         return True
      
 
+def exportarContrataciones():
+   #conexion = sqlite3.connect("db1.db")
+   #pandas.read_sql_query("SELECT * FROM trabajadores").to_excel("C:\Users\Nicolas\OneDrive\Escritorio\contrataciones(export)")
 
+   conexion = sqlite3.connect("db1.db")
+   cursor = conexion.cursor()
 
+   contrataciones = cursor.execute("select * from contrataciones")
+   if contrataciones.fetchone() == None:
+      mb.showerror("Contrataciones", "No existen contrataciones en el sistema")
+      return
+
+   workbook = Workbook("contrataciones.xlsx")
+   worksheet = workbook.add_worksheet()
+   for i, row in enumerate(contrataciones):
+      for j, value in enumerate(row):
+         worksheet.write(i, j, row[j])
+   
+   workbook.close()

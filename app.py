@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import ttk
 import contrataciones
 import desvinculaciones
-from trabajador import Trabajador
+from trabajador import Trabajador, exportarTrabajadores
 
 class app:
    def __init__(self):
@@ -25,13 +25,18 @@ class app:
       labelFrame.grid(column=0, row=0, padx=200, pady=100)
       buttonCargarContratos = ttk.Button(pagina, text = "Cargar contratos", command= lambda: self.CargarContratos())
       #buttonMostrarTrabajadores = ttk.Button(pagina, text = "MostrarContratos")
-      btnExportarTrabajadores = ttk.Button(pagina, text = "Exportar contratos", command= lambda: self.exportarContrataciones())
+      btnExportarContrataciones = ttk.Button(pagina, text = "Exportar contratos", command= lambda: self.exportarContrataciones())
 
       buttonCargarContratos.grid(column=0, row = 0, padx = 300 , pady = 100)
       buttonCargarContratos.place(x = 10 , y = 10 )
 
-      btnExportarTrabajadores.grid(column = 0, row = 0, padx = 200, pady = 100)
-      btnExportarTrabajadores.place(x = 10 , y = 60)
+      btnExportarContrataciones.grid(column = 0, row = 0, padx = 200, pady = 100)
+      btnExportarContrataciones.place(x = 10 , y = 60)
+
+      btnExportarTrabajadores = ttk.Button(pagina, text = "Exportar trbajadores", command = lambda: self.exportarTrabajadores())
+      btnExportarTrabajadores.grid(column = 0, row = 0, padx = 300 , pady = 100)
+      btnExportarTrabajadores.place(x = 120 , y = 10)
+      
       
         
    
@@ -45,10 +50,6 @@ class app:
       btnExportarDesvinculaciones = ttk.Button(pagina, text = "Exportar Desvinculaciones", command = lambda:self.exportarDesvinculaciones())
       btnExportarDesvinculaciones.grid(column= 0, row = 0, padx = 0 , pady = 20)
       btnExportarDesvinculaciones.place(x = 10 , y = 60)
-   
-   def modificarTrabajador():
-      ventana = ttk()
-      
 
    def CargarContratos(self):
       contrataciones.contrataciones.cargarContrataciones()
@@ -62,6 +63,8 @@ class app:
    def exportarDesvinculaciones(self):
       desvinculaciones.exportarDesvinculaciones()
 
+   def exportarTrabajadores(self):
+      exportarTrabajadores()
       
 
 application = app()

@@ -3,14 +3,14 @@ from tkinter import *
 import csv
 import sqlite3
 import trabajador
-import pandas
+#import pandas
 from tkinter import filedialog
 from typing import List, Tuple 
 from tkinter import messagebox as mb
 from datetime import datetime
 from xlsxwriter.workbook import Workbook
 
-from dateutil.relativedelta import relativedelta
+#from dateutil.relativedelta import relativedelta
 
 
   

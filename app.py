@@ -115,15 +115,21 @@ class app:
       print(self.direccion.get())
       conexion.commit()
       conexion.close()
-      
-
-   def click(self,event):
-      self.dato = str(self.tabla.item(self.tabla.selection())["values"][0])
-      self.d = self.tabla.item(self.tabla.selection())["values"][0]
       self.rut.delete(0,END)
       self.direccion.delete(0,END)
       self.correo.delete(0,END)
       self.telefono.delete(0,END)
+      datos = trabajador.Trabajador()
+      d1 = datos.MostrarTrabajadores()
+      for (rut,direccion,correo,telefono) in d1:
+         self.tabla.delete('','end',text=rut,values=[self.direccion,self.correo,self.telefono])
+      for (rut,direccion,correo,telefono) in d1:
+         self.tabla.insert('','end',text=rut,values=[direccion,correo,telefono])
+
+
+   def click(self,event):
+      self.dato = str(self.tabla.item(self.tabla.selection())["values"][0])
+      self.d = self.tabla.item(self.tabla.selection())["values"][0]
       self.editar["state"] = "normal"
       self.rut.insert(0,str(self.tabla.item(self.tabla.selection())["text"]))
 

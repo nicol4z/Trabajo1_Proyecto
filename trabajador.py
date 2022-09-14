@@ -23,6 +23,7 @@ class Trabajador:
         cursor = conexion.execute("SELECT rut , direccion, correo, telefono FROM Trabajadores")
         return cursor.fetchall()
 
+
 def generarFechaNacimiento():
     fechaInicio = date.today().replace(day = 1, month = 1).toordinal()
     fechaFinal = date.today().toordinal()
